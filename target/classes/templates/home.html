@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:form="http://www.w3.org/1999/xhtml">
 <head>
     <style>
 table {
@@ -55,10 +55,11 @@ tr:nth-child(even) {
 
     <p><input type="file" name="file"></p>
     <h2>Select image category: </h2>
-    <select>
-        <option value="A">A</option>
-        <option value="B">B</option>
-        <option value="C">C</option>
+    <select th:field="*{category}" >
+        <option th:each="category : ${T(at.refugeescode.kapsh_show_images.model.Category).values()}"
+                th:value="${category}"
+                th:text="${category}">
+        </option>
     </select>
 
     <button type="submit">add Image</button>

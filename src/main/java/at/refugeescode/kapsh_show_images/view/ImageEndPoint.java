@@ -13,6 +13,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -35,6 +36,27 @@ public class ImageEndPoint {
         return "home";
     }
 
+//    @RequestMapping(method = RequestMethod.POST)
+//    public String submitForm(Model model, @Validated Category category, BindingResult result) {
+//        model.addAttribute("colour", colour);
+//        String returnVal = "successColour";
+//        if(result.hasErrors()) {
+//            initModelList(model);
+//            returnVal = "colour";
+//        } else {
+//            model.addAttribute("colour", colour);
+//        }
+//        return returnVal;
+//    }
+//    @ModelAttribute("categorylist")
+//     List<String> initModelList( ) {
+//        List<String> categorylist = new ArrayList<String>();
+//        categorylist.add("A");
+//        categorylist.add("B");
+//        categorylist.add("C");
+//        return categorylist;
+//    }
+
 
 
     @ModelAttribute("image")
@@ -44,7 +66,6 @@ public class ImageEndPoint {
 
     @PostMapping("/addImage")
     String addImage(Image image, @RequestParam("file") MultipartFile file, RedirectAttributes redirectAttributes){
-
 
         if (!file.isEmpty()) {
             try {
