@@ -3,6 +3,7 @@ package at.refugeescode.kapsh_show_images.model;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import java.util.List;
 
 @Entity
@@ -11,7 +12,10 @@ public class Image {
     @Id
     @GeneratedValue
     private Long id;
+
+    @Lob
     private byte[] image;
+
     private String name;
     private Category category;
 

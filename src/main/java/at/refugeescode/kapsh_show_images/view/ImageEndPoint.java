@@ -14,6 +14,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -76,6 +77,7 @@ public class ImageEndPoint {
                 BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(serverFile));
                 stream.write(bytes);
                 stream.close();
+                image.setImage(bytes);
                 image.setName(file.getOriginalFilename());
                 this.image = image;
                 imageRepository.save(this.image);
@@ -83,7 +85,7 @@ public class ImageEndPoint {
 
             } catch (Exception e) {
                 redirectAttributes.addFlashAttribute("flash.message","Failed Image to upload");
-                return "You failed to upload " + " => " + e.getMessage();
+                return "@@@@You failed to upload " + " => " + e.getMessage();
             }
         } else {
             return "You failed to upload " + " because the file was empty.";
