@@ -37,6 +37,20 @@
         <td>  </td>
         <td th:text="${image.category}"></td>
         <td>  </td>
+        <td>
+            <form th:action="@{/choose}" method="post">
+                <input name="id" th:value="${image.id}" />
+                <h5>Select image category: </h5>
+
+                <select name="c">
+                    <option th:each="category : ${T(at.refugeescode.kapsh_show_images.model.Category).values()}"
+                            th:text="${category}">
+                    </option>
+                </select>
+
+                <button type="submit">submit</button>
+            </form>
+        </td>
 
     </tr>
 </table>

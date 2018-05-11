@@ -1,5 +1,6 @@
 package at.refugeescode.kapsh_show_images.view;
 
+import at.refugeescode.kapsh_show_images.model.Category;
 import at.refugeescode.kapsh_show_images.model.Image;
 import at.refugeescode.kapsh_show_images.repository.ImageRepository;
 import org.springframework.stereotype.Controller;
@@ -93,16 +94,24 @@ public class ImageEndPoint {
     List<Image> getParticipants() {
         return imageRepository.findAll();
     }
+
     @PostMapping("/choose")
-    String choose(Image image){
-        Optional<Image> byId = imageRepository.findById(image.getId());
-        if (byId.isPresent()){
-            image.setId(byId.get().getId());
-            image.setName(byId.get().getName());
-            image.setImage(byId.get().getImage());
-            this.image=image;
-            imageRepository.save(this.image);
-        }
+    String choose(@RequestParam("id") Long id ,@RequestParam("c") Category c ){
+
+        System.out.println(id + "diaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+
+//        Optional<Image> byId = imageRepository.findById(image.getId());
+//        byId.get().setCategory(c);
+//        imageRepository.save(byId.get());
+////        Optional<Image> byId = imageRepository.findById(id);
+////        System.out.println(byId);
+////        if (byId.isPresent()){
+////            image.setId(byId.get().getId());
+////            image.setName(byId.get().getName());
+////            image.setImage(byId.get().getImage());
+////            this.image=image;
+////            imageRepository.save(this.image);
+////        }
 
         return "redirect:/";
     }
