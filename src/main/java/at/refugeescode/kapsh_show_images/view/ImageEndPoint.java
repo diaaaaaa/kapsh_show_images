@@ -15,6 +15,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 
 @Controller
@@ -91,6 +92,19 @@ public class ImageEndPoint {
     @ModelAttribute("images")
     List<Image> getParticipants() {
         return imageRepository.findAll();
+    }
+    @PostMapping("/choose")
+    String choose(Image image){
+        Optional<Image> byId = imageRepository.findById(image.getId());
+        if (byId.isPresent()){
+            image.setId(byId.get().getId());
+            image.setName(byId.get().getName());
+            image.setImage(byId.get().getImage());
+            this.image=image;
+            imageRepository.save(this.image);
+        }
+
+        return "redirect:/";
     }
 
 }
