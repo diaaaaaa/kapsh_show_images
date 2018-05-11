@@ -98,20 +98,10 @@ public class ImageEndPoint {
     @PostMapping("/choose")
     String choose(@RequestParam("id") Long id ,@RequestParam("c") Category c ){
 
-        System.out.println(id + "diaaaaaaaaaaaaaaaaaaaaaaaaaaa");
-
-//        Optional<Image> byId = imageRepository.findById(image.getId());
-//        byId.get().setCategory(c);
-//        imageRepository.save(byId.get());
-////        Optional<Image> byId = imageRepository.findById(id);
-////        System.out.println(byId);
-////        if (byId.isPresent()){
-////            image.setId(byId.get().getId());
-////            image.setName(byId.get().getName());
-////            image.setImage(byId.get().getImage());
-////            this.image=image;
-////            imageRepository.save(this.image);
-////        }
+        Optional<Image> byId = imageRepository.findById(id);
+        byId.get().setCategory(c);
+        imageRepository.deleteById(id);
+        imageRepository.save(byId.get());
 
         return "redirect:/";
     }
